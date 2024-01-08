@@ -5,32 +5,31 @@ import "./App.css";
 import SearchPage from "./pages/SearchPage";
 import ProfilePage from "./pages/ProfilePage";
 import HomePage from "./pages/HomePage";
+import Navbar from "./Navbar";
 
-const router = createBrowserRouter([{
-  path: "/",
-  children: [
-    {
-      path: "",
-      element: (
-        <HomePage/>
-      )
-    },
-    {
-      path: "search",
-      element: (
-        <SearchPage/>
-      )
-    },
-    {
-      path: "profile",
-      element: (
-        <ProfilePage/>
-      )
-    }
-  ]
-}]);
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navbar/>,
+    children: [
+      {
+        path: "search",
+        element: <SearchPage/>,
+      },
+      {
+        path: "profile",
+        element: <ProfilePage/>,
+      },
+      {
+        path: "",
+        element: <HomePage/>,
+      },
+    ],
+  },
+]);
+root.render(
   <React.StrictMode>
     <RouterProvider router={router}/>
   </React.StrictMode>,
