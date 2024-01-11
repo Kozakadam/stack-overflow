@@ -2,7 +2,7 @@
   "name": "stack-overflow-copy",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://Kozakadam.github.io/stack-overflow/",
+  "homepage": "https://kozakadam.github.io/stack-overflow/",
   "type": "module",
   "scripts": {
     "dev": "vite",
