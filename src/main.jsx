@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import "./App.css";
+import "./main.css";
 import SearchPage from "./pages/SearchPage";
 import ProfilePage from "./pages/ProfilePage";
 import HomePage from "./pages/HomePage";
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -15,11 +15,11 @@ const router = createBrowserRouter([
     element: <Navbar/>,
     children: [
       {
-        path: "search",
+        path: "search/:intitle",
         element: <SearchPage/>,
       },
       {
-        path: "profile",
+        path: "profile/:userId",
         element: <ProfilePage/>,
       },
       {
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
   },
 ]);
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <RouterProvider router={router}/>
-  </React.StrictMode>,
+  // </React.StrictMode>,
 )
