@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+], {basename: import.meta.env.DEV ? '/' : '/stack-overflow/'});
 root.render(
   // <React.StrictMode>
     <RouterProvider router={router}/>
