@@ -24,7 +24,6 @@ function SearchPage() {
         page = STARTING_PAGE
       }
       const data = await questionProvider({intitle, page})
-      console.log(data)
       setIsNextPage(data.has_more)
       setQuestions(data.items)
       setLoading(false)

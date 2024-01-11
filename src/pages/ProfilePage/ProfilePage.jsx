@@ -16,7 +16,6 @@ function ProfilePage() {
     async function getUser() {
       setLoading(true)
       const data = await userProvider(userId)
-      console.log(data)
       setUser(data)
       setLoading(false)
     }
