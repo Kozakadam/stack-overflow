@@ -26,14 +26,7 @@ function ProfilePage() {
 
   function getBadgeData(user) {
     const BADGE_TYPES = ['gold', 'silver', 'bronze']
-    const BADGE_COLORS = {
-      gold: 'yellow-400',
-      silver: 'gray-400',
-      bronze: 'amber-800',
-    }
-
     return BADGE_TYPES.map((type) => ({
-      color: BADGE_COLORS[type],
       badges: user[type]
         .sort((a, b) => b.award_count - a.award_count)
         .slice(0, 3),
