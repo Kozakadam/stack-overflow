@@ -51,7 +51,7 @@ function ProfilePage() {
                 {getBadgeData(user).map((badgeType) => (
                   <BadgeContainer
                     badgeData={badgeType}
-                    key={badgeType.color}
+                    key={badgeType.type}
                   />
                 ))}
               </div>
