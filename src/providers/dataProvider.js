@@ -1,6 +1,4 @@
 const API = 'https://api.stackexchange.com/2.3/'
-const KEY = 'wB1ehWe1pIaDqzgX2L*TpA(('
-const SITE = 'stackoverflow'
 
 async function providerBase(query) {
   const path = API + query
@@ -19,33 +17,25 @@ function pathBuilder(queryParams, subPath) {
   return subPath + queryString
 }
 
-async function questionProvider(params) {
+async function questionProvider(params, config) {
   const subPath = 'search?'
-  const queryParams = {
-    SITE,
-    KEY,
-    pagesize: 10,
-    order: 'desc',
-    sort: 'activity',
-    filter: '!6CI807gY2Bqs)8QEOi7gznVlZa9HIaouF2mwLILbIQF_ZI(Ih5q8EaTEUME',
-    ...params,
-  }
-  const queryString = pathBuilder(queryParams, subPath)
+  const queryParams = {...config, ...params}
 
+  const queryString = pathBuilder(queryParams, subPath)
   return await providerBase(queryString)
 }
 
-async function userProvider(userId) {
+async function userProvider(userId, config) {
+
   try {
-    const [base, bronze, silver, gold, tags, posts] =
-      await Promise.all([
-        userBaseProvider(userId),
-        userBadgeProvider(userId, 'bronze'),
-        userBadgeProvider(userId, 'silver'),
-        userBadgeProvider(userId, 'gold'),
-        userTagProvider(userId),
-        userPostProvider(userId),
-      ])
+    const [base, bronze, silver, gold, tags, posts] = await Promise.all([
+      userBaseProvider(userId, config.USER_BASE_PROVIDER_CONFIG),
+      userBadgeProvider(userId, 'bronze', config.BADGE_PROVIDER_CONFIG),
+      userBadgeProvider(userId, 'silver', config.BADGE_PROVIDER_CONFIG),
+      userBadgeProvider(userId, 'gold', config.BADGE_PROVIDER_CONFIG),
+      userTagProvider(userId, config.TAG_PROVIDER_CONFIG),
+      userPostProvider(userId, config.POST_PROVIDER_CONFIG),
+    ])
     return parseUserData({base, bronze, silver, gold, tags, posts})
   } catch (e) {
     console.error(e)
@@ -57,62 +47,41 @@ function parseUserData(responses) {
   for (const [key, value] of Object.entries(responses)) {
     user[key] = value.items
   }
+  console.log(user)
   return user
 }
 
-async function userBaseProvider(userId) {
+async function userBaseProvider(userId, config) {
   const subPath = `users/${userId}?`
-  const queryParams = {
-    SITE,
-    KEY,
-    order: 'desc',
-    sort: 'reputation',
-    filter: '!)67eUCPDdzHPQyxsZPE79.xuxsQs',
-  }
-  const queryString = pathBuilder(queryParams, subPath)
+  const queryString = pathBuilder(config, subPath)
 
   return await providerBase(queryString)
 }
 
-async function userBadgeProvider(userId, rank) {
+async function userBadgeProvider(userId, rank, config) {
   const subPath = `users/${userId}/badges?`
   const queryParams = {
-    SITE,
-    KEY,
-    order: 'desc',
-    sort: 'rank',
-    filter: '!mR30mn1F5G',
+    ...config,
     min: rank,
     max: rank,
   }
+
   const queryString = pathBuilder(queryParams, subPath)
   return providerBase(queryString)
 }
 
-async function userTagProvider(userId) {
+async function userTagProvider(userId, config) {
   const subPath = `users/${userId}/tags?`
-  const queryParams = {
-    SITE,
-    KEY,
-    order: 'desc',
-    sort: 'popular',
-    filter: '!T.BkwE7kN.ODeHvTYD',
-  }
-  const queryString = pathBuilder(queryParams, subPath)
+
+  const queryString = pathBuilder(config, subPath)
   return providerBase(queryString)
 }
 
-async function userPostProvider(userId) {
+async function userPostProvider(userId, config) {
   const subPath = `users/${userId}/posts?`
-  const queryParams = {
-    SITE,
-    KEY,
-    order: 'desc',
-    sort: 'votes',
-    filter: '!-KbwIc-YQJTe-HFa6)6nmBxk6Aocomxmr',
-  }
-  const queryString = pathBuilder(queryParams, subPath)
+
+  const queryString = pathBuilder(config, subPath)
   return providerBase(queryString)
 }
 
-export { questionProvider, userProvider };
+export {questionProvider, userProvider}
