@@ -3,7 +3,7 @@ import {
   constructLabelWithCount,
   parseBody,
   parseDate,
-} from '../../utilities/utilities.js'
+} from '../../../utilities/utilities.js'
 
 function Question({question}) {
   const navigate = useNavigate()

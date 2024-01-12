@@ -2,7 +2,7 @@ import React from 'react'
 import {
   adjustLabelAccordingToCount,
   roundToThousand,
-} from '../../utilities/utilities.js'
+} from '../../../utilities/utilities.js'
 
 function UserStatContainer({user}) {
   return (

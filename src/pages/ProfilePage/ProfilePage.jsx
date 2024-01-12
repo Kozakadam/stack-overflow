@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {useParams} from 'react-router-dom'
 import {userProvider} from '../../providers/dataProvider.js'
-import BadgeContainer from '../../components/BadgeContainer'
-import ProfileHeader from '../../components/ProfileHeader'
-import UserStatContainer from '../../components/UserStatContainer'
-import TagListContainer from "../../components/TagListContainer";
-import PostListContainer from "../../components/PostListContainer";
+import BadgeContainer from '../../components/profilePageComponents/BadgeContainer'
+import ProfileHeader from '../../components/profilePageComponents/ProfileHeader'
+import UserStatContainer from '../../components/profilePageComponents/UserStatContainer'
+import TagListContainer from "../../components/profilePageComponents/TagListContainer";
+import PostListContainer from "../../components/profilePageComponents/PostListContainer";
 
 function ProfilePage() {
   const {userId} = useParams()

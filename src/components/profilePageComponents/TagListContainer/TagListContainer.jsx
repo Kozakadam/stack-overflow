@@ -1,5 +1,5 @@
 import React from 'react';
-import { constructLabelWithCount, parseDate } from "../../utilities/utilities.js";
+import { constructLabelWithCount, parseDate } from "../../../utilities/utilities.js";
 
 function TagListContainer({tags}) {
   return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import {badgeIcon} from '../../assets/icons/svgLib.js'
+import {badgeIcon} from '../../../assets/icons/svgLib.js'
 
 function BadgeContainer({badgeData}) {
   return (

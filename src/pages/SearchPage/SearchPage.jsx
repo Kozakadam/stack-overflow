@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {useParams} from 'react-router-dom'
 import {questionProvider} from '../../providers/dataProvider.js'
-import Question from '../../components/Question'
-import PageNavigationFooter from '../../components/PageNavigationFooter/index.js'
+import Question from '../../components/searchPageComponents/Question'
+import PageNavigationFooter from '../../components/searchPageComponents/PageNavigationFooter/index.js'
 
 const STARTING_PAGE = 1
 

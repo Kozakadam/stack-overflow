@@ -5,7 +5,7 @@ import "./main.css";
 import SearchPage from "./pages/SearchPage";
 import ProfilePage from "./pages/ProfilePage";
 import HomePage from "./pages/HomePage";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbarComponents/Navbar";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

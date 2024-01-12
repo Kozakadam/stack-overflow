@@ -1,5 +1,5 @@
 import React from 'react';
-import { parseDate } from "../../utilities/utilities.js";
+import { parseDate } from "../../../utilities/utilities.js";
 
 function PostListContainer({posts}) {
   return (
