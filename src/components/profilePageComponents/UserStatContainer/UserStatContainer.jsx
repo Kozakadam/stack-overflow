@@ -6,7 +6,7 @@ import {
 
 function UserStatContainer({user}) {
   return (
-    <>
+    <div>
       <div className="mb-2 text-left text-xl font-bold">Stats</div>
       <div className="h-48 min-w-40 grid-cols-2 grid-rows-3 flex-nowrap gap-0 rounded-lg border border-zinc-500 px-4 py-4 text-left md:grid">
         <div>
@@ -30,7 +30,7 @@ function UserStatContainer({user}) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

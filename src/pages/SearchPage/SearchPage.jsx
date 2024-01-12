@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom'
 import {questionProvider} from '../../providers/dataProvider.js'
 import Question from '../../components/searchPageComponents/Question'
 import PageNavigationFooter from '../../components/searchPageComponents/PageNavigationFooter/index.js'
+import { QUESTION_PROVIDER_CONFIG } from "../../providers/providerConfig.js";
 
 const STARTING_PAGE = 1
 
@@ -23,7 +24,7 @@ function SearchPage() {
         setCurrentPage(STARTING_PAGE)
         page = STARTING_PAGE
       }
-      const data = await questionProvider({intitle, page})
+      const data = await questionProvider({intitle, page}, QUESTION_PROVIDER_CONFIG)
       setIsNextPage(data.has_more)
       setQuestions(data.items)
       setLoading(false)
@@ -44,14 +45,12 @@ function SearchPage() {
         <div className="2xl:w:6/12 mx-auto mb-10 w-full text-left md:w-11/12 lg:w-10/12 xl:w-8/12">
           {questions.length > 0 ? (
             <>
-              <div>
-                {questions.map((q) => (
-                  <Question
-                    question={q}
-                    key={q.question_id}
-                  />
-                ))}
-              </div>
+              {questions.map((q) => (
+                <Question
+                  question={q}
+                  key={q.question_id}
+                />
+              ))}
               <PageNavigationFooter
                 currentPage={currentPage}
                 handlePageChange={handlePageChange}
