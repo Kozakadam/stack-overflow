@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createHashRouter, RouterProvider } from 'react-router-dom';
+import {createBrowserRouter, createHashRouter, RouterProvider} from 'react-router-dom'
 import "./main.css";
 import SearchPage from "./pages/SearchPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -15,7 +15,7 @@ const router = createHashRouter([
     element: <Navbar/>,
     children: [
       {
-        path: "search/:intitle/:page",
+        path: "search/:intitle",
         element: <SearchPage/>,
       },
       {
@@ -28,7 +28,7 @@ const router = createHashRouter([
       },
     ],
   },
-], {basename: import.meta.env.DEV ? '/' : '/stack-overflow/#/'});
+]);
 root.render(
   // <React.StrictMode>
     <RouterProvider router={router}/>
