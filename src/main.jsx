@@ -28,7 +28,7 @@ const router = createHashRouter([
       },
     ],
   },
-], {basename: import.meta.env.DEV ? '/' : '/stack-overflow/'});
+], {basename: import.meta.env.DEV ? '/' : '/stack-overflow/#/'});
 root.render(
   // <React.StrictMode>
     <RouterProvider router={router}/>
