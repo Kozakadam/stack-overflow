@@ -18,15 +18,15 @@ function parseDate(number) {
 }
 
 function roundToThousand(count) {
-  return count >= 1000 ? Math.floor(count / 1000) + 'k' : count
+  return count >= 1000 ? `${Math.floor(count / 1000)}k` : count
 }
 
 function adjustLabelAccordingToCount(count, label) {
-  return count === 1 ? label : label + 's'
+  return count === 1 ? label : `${label}s`
 }
 
 function constructLabelWithCount(count, label){
-  return roundToThousand(count) + " " + adjustLabelAccordingToCount(count, label)
+  return `${roundToThousand(count)} ${adjustLabelAccordingToCount(count, label)}`
 }
 
 export {parseBody, parseDate, roundToThousand, adjustLabelAccordingToCount, constructLabelWithCount}

@@ -12,7 +12,7 @@ async function providerBase(query) {
 
 function pathBuilder(queryParams, subPath) {
   const queryString = Object.entries(queryParams)
-    .map(([key, value]) => key + '=' + value)
+    .map(([key, value]) => `${key}=${value}`)
     .join('&')
   return subPath + queryString
 }
