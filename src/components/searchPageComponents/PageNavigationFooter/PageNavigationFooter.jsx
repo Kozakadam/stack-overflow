@@ -7,7 +7,7 @@ function PageNavigationFooter({currentPage, isNextPage, handlePageChange}) {
         className={`m-2 w-fit p-2 text-left text-white ${
           currentPage > 1 ? 'bg-zinc-900 hover:bg-black ' : ''
         }`}
-        disabled={currentPage === 1}
+        disabled={currentPage == 1}
         onClick={() => handlePageChange(-1)}>
         Previous
       </button>

@@ -16,8 +16,10 @@ function InputElement({id}) {
 
   function submit(e) {
     e.preventDefault()
+    const searchPath = "search";
+    const firstPage = 1;
     if (searchParam && searchParam !== '') {
-      navigate(`/search/${searchParam}`)
+      navigate(`/${searchPath}/${searchParam}/${firstPage}`)
     } else {
       navigate('/')
     }

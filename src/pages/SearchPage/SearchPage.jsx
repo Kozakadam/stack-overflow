@@ -1,40 +1,45 @@
 import React, {useEffect, useState} from 'react'
-import {useParams} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import {questionProvider} from '../../providers/dataProvider.js'
 import Question from '../../components/searchPageComponents/Question'
 import PageNavigationFooter from '../../components/searchPageComponents/PageNavigationFooter/index.js'
-import { QUESTION_PROVIDER_CONFIG } from "../../providers/providerConfig.js";
+import {QUESTION_PROVIDER_CONFIG} from '../../providers/providerConfig.js'
 
 const STARTING_PAGE = 1
 
 function SearchPage() {
-  let {intitle} = useParams()
+  let {intitle, page} = useParams()
   const [loading, setLoading] = useState(true)
   const [questions, setQuestions] = useState([])
-  const [currentPage, setCurrentPage] = useState(STARTING_PAGE)
+  // const [currentPage, setCurrentPage] = useState(STARTING_PAGE)
   const [isNextPage, setIsNextPage] = useState(false)
   const [topic, setTopic] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
     async function getQuestions() {
       setLoading(true)
-      let page = currentPage
+      // let page = currentPage
       if (topic !== intitle) {
         setTopic(intitle)
-        setCurrentPage(STARTING_PAGE)
-        page = STARTING_PAGE
+        // setCurrentPage(STARTING_PAGE)
+        // page = STARTING_PAGE
       }
-      const data = await questionProvider({intitle, page}, QUESTION_PROVIDER_CONFIG)
+      const data = await questionProvider(
+        {intitle, page},
+        QUESTION_PROVIDER_CONFIG
+      )
       setIsNextPage(data.has_more)
       setQuestions(data.items)
       setLoading(false)
     }
 
     getQuestions()
-  }, [intitle, currentPage])
+  }, [intitle, page])
 
   function handlePageChange(change) {
-    setCurrentPage((currentPage) => currentPage + change)
+    const searchPath = "search"
+    navigate(`/${searchPath}/${intitle}/${parseInt(page) + change}`)
   }
 
   return (
@@ -52,7 +57,7 @@ function SearchPage() {
                 />
               ))}
               <PageNavigationFooter
-                currentPage={currentPage}
+                currentPage={page}
                 handlePageChange={handlePageChange}
                 isNextPage={isNextPage}
               />
