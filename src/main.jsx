@@ -15,7 +15,7 @@ const router = createHashRouter([
     element: <Navbar/>,
     children: [
       {
-        path: "search/:intitle",
+        path: "search/:intitle/:page",
         element: <SearchPage/>,
       },
       {
